@@ -80,6 +80,8 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
         'meta' => 'array',
     ];
 
+    protected $authPasswordName = 'password';
+
     /**
      * The posts.
      *
@@ -111,13 +113,23 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
     }
 
     /**
+     * Get the name of the password attribute for the user.
+     *
+     * @return string
+     */
+    public function getAuthPasswordName()
+    {
+        return $this->authPasswordName;
+    }
+
+    /**
      * Get the password for the user.
      *
      * @return string
      */
     public function getAuthPassword()
     {
-        return $this->password;
+        return $this->{$this->getAuthPasswordName()};
     }
 
     /**
